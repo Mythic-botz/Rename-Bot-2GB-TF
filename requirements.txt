@@ -9,4 +9,4 @@ pytz
 Flask
 gunicorn
 aiohttp
-pyrogram
+pyrofork
