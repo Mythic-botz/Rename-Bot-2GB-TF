@@ -1,47 +1,76 @@
 import os, time, re
-from typing import List
 id_pattern = re.compile(r'^.\d+$')
+
 
 class Config(object):
     # pyro client config
-    API_ID = os.environ.get("API_ID", "")
-    API_HASH = os.environ.get("API_HASH", "")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "") 
-   
+    API_ID    = os.environ.get("API_ID", "23476863")
+    API_HASH  = os.environ.get("API_HASH", "69daa0835439c4211f34c2e9ad0acb5c")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "8189225558:AAFCe89gHJf3UUFWeZ_rcGbte3_V7NqTYns") 
+
     # database config
-    DATABASE_NAME = os.environ.get("DATABASE_NAME","")     
-    DATABASE_URL = os.environ.get("DATABASE_URL","")
+    DB_NAME = os.environ.get("DB_NAME","Rename")     
+    DB_URL  = os.environ.get("DB_URL","mongodb+srv://Rename:XoFpKwreyhCeEvcI@rename.aukmb5u.mongodb.net/")
 
     # other configs
-    BOT_UPTIME = time.time()
-    START_PIC = (os.environ.get("START_PIC", "https://envs.sh/N2f.jpg https://envs.sh/N2a.jpg https://envs.sh/N2O.jpg")).split()
-    ADMIN = int(os.environ.get("ADMIN", ""))
+    BOT_UPTIME  = time.time()
+    START_PIC   = os.environ.get("START_PIC", "https://graph.org/file/c54d1c60ba3ef2d4913de-82ed8fe7a03b824dc0.jpg")
+    ADMIN = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6617544956').split()]
 
-    # channels
-    IS_FSUB = os.environ.get("IS_FSUB", "False").lower() == "true"  # Set "True" For Enable Force Subscribe
-    AUTH_CHANNELS = list(map(int, os.environ.get("AUTH_CHANNELS", "").split())) # Add Multiple Channels iD By Space
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", ""))
-    BIN_CHANNEL = int(os.environ.get("BIN_CHANNEL", ""))
+    # channels logs
+    FORCE_SUB   = os.environ.get("FORCE_SUB", "MythicBot_Support") 
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002686116676"))
+    BIN_CHANNEL = int(os.environ.get("BIN_CHANNEL", "-1002475576837"))
 
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", True))
 
 
+    # 🔐 TOKEN SYSTEM
+    TOKEN_TIME = 12   # ⏰ 12 hours in seconds
+    SHORTLINK_API = os.getenv("SHORTLINK_API", "242fb1e2951cdf981a8725048e7abafa3cf868ae")
+    SHORTLINK_DOMAIN = "http://seturl.in"  # 🌐 Shortener base URL
+
+
+
 class Txt(object):
     # part of text configuration
-    START_TXT = """{},
+    START_TXT = """<b>👋 Hello ➤ {},</b>
 
-𝖴𝗌𝗂𝗇𝗀 𝗍𝗁𝗂𝗌 𝖻𝗈𝗍 𝗒𝗈𝗎 𝖼𝖺𝗇 𝗋𝖾𝗇𝖺𝗆𝖾 𝖺𝗇𝖽 𝖼𝗁𝖺𝗇𝗀𝖾 𝗍𝗁𝗎𝗆𝖻𝗇𝖺𝗂𝗅 𝗈𝖿 𝗒𝗈𝗎𝗋 𝖿𝗂𝗅𝖾𝗌. 𝖠𝗇𝖽 𝗒𝗈𝗎 𝖼𝖺𝗇 𝖺𝗅𝗌𝗈 𝖼𝗈𝗇𝗏𝖾𝗋𝗍 𝗏𝗂𝖽𝖾𝗈 𝗍𝗈 𝖿𝗂𝗅𝖾 𝖺𝗇𝖽 𝖿𝗂𝗅𝖾 𝗍𝗈 𝗏𝗂𝖽𝖾𝗈.
+<blockquote>
+<b>❝ Rename, Customize & Share — All in One Place ❞</b>
+</blockquote>
 
-<blockquote><b>𝘕𝘰𝘵𝘦 :</b> 𝘈𝘥𝘶𝘭𝘵 𝘊𝘰𝘯𝘵𝘦𝘯𝘵 𝘪𝘴 𝘚𝘛𝘙𝘐𝘊𝘛𝘓𝘠 𝘱𝘳𝘰𝘩𝘪𝘣𝘪𝘵𝘦𝘥 𝘉𝘢𝘯 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘱𝘦𝘳𝘮𝘢𝘯𝘦𝘯𝘵.</blockquote>"""
+✨ With this bot, you can:
+➤ <b>Rename</b> files with a custom name  
+➤ <b>Set or change thumbnails</b> for your media  
+➤ <b>Convert</b> file ↔️ video (and vice versa)  
+➤ Add <b>custom captions</b>, <b>prefix</b>, and <b>suffix</b>
 
-    ABOUT_TXT = ABOUT_TXT = """<b>‣ ᴍʏ ɴᴀᴍᴇ : <a href='https://youtube.com/@techifybots'>ᴢᴏʀᴏ ʀᴇɴᴀᴍᴇ ʙᴏᴛ</a>
-‣ ʟɪʙʀᴀʀʏ : <a href='https://docs.pyrogram.org/'>ᴘʏʀᴏɢʀᴀᴍ</a> 
-‣ ᴅᴀᴛᴀʙᴀsᴇ : <a href='https://www.mongodb.com/'>ᴍᴏɴɢᴏᴅʙ</a>
-‣ ʟᴀɴɢᴜᴀɢᴇ : <a href='https://www.python.org/download/releases/3.0/'>ᴘʏᴛʜᴏɴ 𝟹</a> 
-‣ ʙᴏᴛ sᴇʀᴠᴇʀ : <a href='https://www.koyeb.com/'>ᴋᴏʏᴇʙ</a>
-‣ ᴄʀᴇᴀᴛᴇᴅ ʙʏ : <a href='https://telegram.me/callownerbot'>ʀᴀʜᴜʟ</a></b>"""
+<b>⚙️ Features You’ll Love:</b>
+🔧 Auto Thumbnail Generator  
+📝 Caption Editor  
+📁 Filename Formatter  
+📤 Inline Upload Options
 
+<b>🚫 Note:</b>  
+Renaming or sharing <u>adult content</u> is <b>strictly prohibited</b>.  
+Violation will lead to an <b>immediate and permanent ban</b>.
+
+<blockquote>
+<b>✨ Stay safe, stay creative, and enjoy the bot!</b>
+</blockquote>
+"""
+
+    ABOUT_TXT = """
+<b>❍ ᴍʏ ɴᴀᴍᴇ : <a href='https://telegram.me/Mythic_Bots'>ʀᴇɴᴀᴍᴇ ɢᴇɴɪᴇ ʙᴏᴛ</a>
+❍ ʜᴏsᴛᴇᴅ ᴏɴ : ᴋᴏʏᴇʙ
+❍ ᴅᴀᴛᴀʙᴀsᴇ : ᴍᴏɴɢᴏ ᴅʙ
+❍ ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ 𝟹
+❍ ᴍʏ ᴄʀᴇᴀᴛᴏʀ : <a href='https://telegram.me/PS_Talkbot'>ʀᴀʜᴜʟ</a>
+
+➻ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ꜰᴏʀ ɢᴇᴛᴛɪɴɢ ᴍᴏʀᴇ ɪɴꜰᴏ ᴀʙᴏᴜᴛ ᴍᴇ.</b>
+"""
 
     HELP_TXT = """
 <b>ʀᴇɴᴀᴍᴇ ʙᴏᴛ ɪꜱ ᴀ ʜᴀɴᴅʏ ᴛᴏᴏʟ ᴛʜᴀᴛ ʜᴇʟᴘꜱ ʏᴏᴜ ʀᴇɴᴀᴍᴇ ᴀɴᴅ ᴍᴀɴᴀɢᴇ ʏᴏᴜʀ ꜰɪʟᴇꜱ ᴇꜰꜰᴏʀᴛʟᴇꜱꜱʟʏ.
@@ -51,7 +80,7 @@ class Txt(object):
 
     THUMBNAIL_TXT = """<b>» <u>ᴛᴏ ꜱᴇᴛ ᴄᴜꜱᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ</u></b>
     
-➲ ꜱᴇɴᴅ ᴀɴʏ ᴘʜᴏᴛᴏ ᴛᴏ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ꜱᴇᴛ ɪᴛ ᴀꜱ ᴀ ᴛʜᴜᴍʙɴᴀɪʟ.
+➲ /start: ꜱᴇɴᴅ ᴀɴʏ ᴘʜᴏᴛᴏ ᴛᴏ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ꜱᴇᴛ ɪᴛ ᴀꜱ ᴀ ᴛʜᴜᴍʙɴᴀɪʟ.
 ➲ /delthumb: ᴜꜱᴇ ᴛʜɪꜱ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴅᴇʟᴇᴛᴇ ʏᴏᴜʀ ᴛʜᴜᴍʙɴᴀɪʟ.
 ➲ /viewthumb: ᴜꜱᴇ ᴛʜɪꜱ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴠɪᴇᴡ ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ ᴛʜᴜᴍʙɴᴀɪʟ.
 
@@ -77,7 +106,7 @@ class Txt(object):
 ➲ /see_prefix: ᴛᴏ ᴠɪᴇᴡ ʏᴏᴜʀ ᴄᴜꜱᴛᴏᴍ ᴘʀᴇꜰɪx.
 ➲ /del_prefix: ᴛᴏ ᴅᴇʟᴇᴛᴇ ʏᴏᴜʀ ᴄᴜꜱᴛᴏᴍ ᴘʀᴇꜰɪx.
 
-» ᴇx: `/set_prefix @TechifyBots`
+» ᴇx: `/set_prefix @Otaku_Hindi_Hub`
 """
 
     SUFFIX = """<b>» <u>ᴛᴏ ꜱᴇᴛ ᴄᴜꜱᴛᴏᴍ sᴜꜰꜰɪx</u></b>
@@ -86,7 +115,7 @@ class Txt(object):
 ➲ /see_suffix: ᴛᴏ ᴠɪᴇᴡ ʏᴏᴜʀ ᴄᴜꜱᴛᴏᴍ sᴜꜰꜰɪx.
 ➲ /del_suffix: ᴛᴏ ᴅᴇʟᴇᴛᴇ ʏᴏᴜʀ ᴄᴜꜱᴛᴏᴍ sᴜꜰꜰɪx.
 
-» ᴇx: `/set_suffix @TechifyBots`
+» ᴇx: `/set_suffix @Otaku_Hindi_Hub`
 """
 
     PROGRESS_BAR = """\n
@@ -103,16 +132,16 @@ class Txt(object):
 
 ❣️ 𝐷𝑜𝑛𝑎𝑡𝑖𝑜𝑛𝑠 𝑎𝑟𝑒 𝑟𝑒𝑎𝑙𝑙𝑦 𝑎𝑝𝑝𝑟𝑒𝑐𝑖𝑎𝑡𝑒𝑑 𝑖𝑡 ℎ𝑒𝑙𝑝𝑠 𝑖𝑛 𝑏𝑜𝑡 𝑑𝑒𝑣𝑒𝑙𝑜𝑝𝑚𝑒𝑛𝑡
 
-💖 𝐔𝐏𝐈 𝐈𝐃 : `TechifyRahul@UPI`
+💖 𝐔𝐏𝐈 𝐈𝐃 : `@UPI`
 
-💗 𝐐𝐑 𝐂𝐨𝐝𝐞 : <b><a href='https://TechifyBots.github.io/PayWeb'>𝖢𝗅𝗂𝖼𝗄 𝖧𝖾𝗋𝖾</a></b>
+💗 𝐐𝐑 𝐂𝐨𝐝𝐞 : <b><a href='https://Mythic-Bots.github.io/Donate'>𝖢𝗅𝗂𝖼𝗄 𝖧𝖾𝗋𝖾</a></b>
 """
 
-    SEND_METADATA = """<b>» <u>ᴛᴏ ꜱᴇᴛ ᴄᴜꜱᴛᴏᴍ ᴍᴇᴛᴀᴅᴀᴛᴀ</u></b>
+    SEND_METADATA = """🖼️ 𝗛𝗼𝘄 𝗧𝗼 𝗦𝗲𝘁 𝗖𝘂𝘀𝘁𝗼𝗺 𝗠𝗲𝘁𝗮𝗱𝗮𝘁𝗮
 
-➲ /metadata: ᴛᴏ ꜱᴇᴛ ᴀ ᴄᴜꜱᴛᴏᴍ ᴍᴇᴛᴀᴅᴀᴛᴀ
+For Example :-
 
-ᴀꜰᴛᴇʀ ᴜsɪɴɢ ᴄᴍᴅ sᴇɴᴅ ᴀɴʏ ᴛᴇxᴛ ɪ ᴡɪʟʟ sᴀᴠᴇ ɪᴛ ᴀs ʏᴏᴜʀ ᴍᴇᴛᴀᴅᴀᴛᴀ
+<code>By: @Otaku_Hindi_Hub</code>
 
-» ᴇx: `@TechifyBots`
+💬 For Help Contact @MythicBot_Support
 """
